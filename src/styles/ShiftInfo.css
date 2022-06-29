@@ -1,0 +1,135 @@
+.shiftInfo {
+    padding-top: 5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: "Times New Roman", sans-serif;
+    font-size: 1.125rem;
+}
+
+.shiftForm {
+    width: 400px;
+    background: linear-gradient(25deg, rgba(4, 10, 14, 1) 0%, rgba(21, 43, 60, 1) 25%, rgba(58, 102, 139, 1) 50%, rgba(67, 128, 177, 1) 75%, rgba(41, 80, 116, 1) 100%);
+    padding: 2rem 1rem 2rem 1rem;
+    border-radius: 10px;
+    box-shadow: 5px 20px 50px #000;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    text-align: center;
+    outline: none;
+    margin-bottom: 2rem;
+    color: white;
+}
+
+
+
+.pickers {
+    display: flex;
+    margin-bottom: 1rem;
+}
+
+
+.selection-option {
+    display: inline-block;
+    padding: 0;
+    border: 0;
+    width: 50%;
+    margin-left:3rem;
+}
+
+
+.shiftButton {
+    width: 40%;
+    height: 3rem;
+    justify-content: center;
+    display: block;
+    color: #fff;
+    background: #459ec7 linear-gradient(to bottom, #459ec7 5%, #982abd 100%);
+    font-weight: bold;
+    margin: 20px auto 10px;
+    outline: none;
+    border: none;
+    border-radius: 1rem;
+    font-family: "Times New Roman", sans-serif;
+    font-size: 1.125rem;
+    transition: .2s ease-in;
+    cursor: pointer;
+}
+
+.shiftButton:hover {
+    background: #982abd linear-gradient(to bottom, #982abd 5%, #459ec7 100%);
+}
+.shiftButton:active {
+    position:relative;
+}
+
+
+.tableInfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    text-align: center;
+}
+
+
+.shiftTable {
+    border-collapse: collapse;
+    margin: 2.5rem 1rem;
+    font-size: 1em;
+    font-family: "Times New Roman", sans-serif;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.shiftTable thead tr {
+    background-color: #1e347b;
+    color: #ffffff;
+    text-align: left;
+}
+
+.shiftTable tr:hover td {
+    background-color: #2aabd2;
+}
+
+.shiftTable th {
+    text-align: center;
+    padding: 1rem 1rem;
+    color: #ffffff;
+}
+
+.shiftTable td {
+    text-align: center;
+    padding: 0.75rem 1rem;
+    color: #ffffff;
+}
+
+.shiftTable tbody tr {
+    border-bottom: 1px solid #dddddd;
+    font-size: 1rem;
+}
+
+.exportCSV {
+    width: 35%;
+    height: 2.5rem;
+    color: #fff;
+    background: #459ec7 linear-gradient(to bottom, #459ec7 5%, #982abd 100%);
+    font-weight: bold;
+    margin: 1em auto 0.5em;
+    outline: none;
+    border: none;
+    border-radius: 1rem;
+    font-family: "Times New Roman", sans-serif;
+    font-size: 1.125rem;
+    transition: .2s ease-in;
+    cursor: pointer;
+}
+
+.exportCSV:hover {
+    background: #982abd linear-gradient(to bottom, #982abd 5%, #459ec7 100%);
+}
+.exportCSV:active {
+    position:relative;
+}

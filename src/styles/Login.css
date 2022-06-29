@@ -1,0 +1,73 @@
+.loginForm {
+    padding-top:10rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Times New Roman", sans-serif;
+    right: 0;
+
+}
+
+.form-style {
+    background: linear-gradient(180deg, rgba(4, 10, 14, 1) 0%, rgba(21, 43, 60, 1) 25%, rgba(58, 102, 139, 1) 50%, rgba(67, 128, 177, 1) 75%, rgba(41, 80, 116, 1) 100%);
+    padding: 2rem 1rem 2rem 1rem;
+    border-radius: 10px;
+    box-shadow: 5px 20px 50px #000;
+}
+
+.loginlabel {
+    color: #fff;
+    font-size: 1.25em;
+    display: flex;
+    margin: 1rem;
+    font-weight: bold;
+}
+
+.Username {
+    font-size: 12px;
+    box-sizing: border-box;
+    display: block;
+    border: none;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    width: 20rem;
+    margin-bottom: 1.25rem;
+    outline: none;
+    transition: all 0.2s ease-in-out;
+}
+
+.Password {
+    box-sizing: border-box;
+    display: block;
+    border: none;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    width: 20rem;
+    margin-bottom: 1.25rem;
+    outline: none;
+    transition: all 0.2s ease-in-out;
+}
+
+.form-submit {
+    width: 50%;
+    height: 2.5rem;
+    justify-content: center;
+    display: block;
+    color: #fff;
+    background: #459ec7 linear-gradient(to bottom, #459ec7 5%, #982abd 100%);
+    font-weight: bold;
+    margin: 20px auto 10px;
+    outline: none;
+    border: none;
+    border-radius: 1rem;
+    font-family: "Times New Roman", sans-serif;
+    font-size: 1.25rem;
+    transition: .2s ease-in;
+    cursor: pointer;
+}
+.form-submit:hover {
+    background: #982abd linear-gradient(to bottom, #982abd 5%, #459ec7 100%);
+}
+.form-submit:active {
+    position:relative;
+}

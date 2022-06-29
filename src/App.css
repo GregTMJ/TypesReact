@@ -1,0 +1,21 @@
+html,
+body {
+  height: 100%;
+  width: 100%;
+  background: rgb(4, 10, 14);
+  background: linear-gradient(90deg, rgba(4, 10, 14, 1) 0%, rgba(21, 43, 60, 1) 25%, rgba(58, 102, 139, 1) 50%, rgba(67, 128, 177, 1) 75%, rgba(41, 80, 116, 1) 100%);
+  margin: 0;
+}
+
+
+.content-wrapper {
+  margin: 0 auto;
+  padding-top: 5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  height: 100%;
+  width: 100%;
+
+}
