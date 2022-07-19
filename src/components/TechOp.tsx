@@ -19,18 +19,22 @@ interface enumUnitInfo {
 export default function TechOp({unitInfo, operationsInfo}: enumUnitInfo) {
 
     const [loaded, setLoaded] = useState<boolean>(false)
+    let _isMounted = true
+
+    const getTableData = async () => {
+        if (_isMounted) {
+            await techResultTable(operationsInfo, unitInfo.unit_name, unitInfo.unit_ref, unitInfo.is_productive)
+            await setLoaded(true)
+        }
+    }
 
 
     useEffect(() => {
-        let _isMounted = false
-        const getTableData = async () => {
-            _isMounted = true
-            if (_isMounted) {
-                await techResultTable(operationsInfo, unitInfo.unit_name, unitInfo.unit_ref, unitInfo.is_productive)
-                await setLoaded(true)
-            }
+
+        if (_isMounted) {
+            getTableData()
         }
-        getTableData()
+
         return () => {
             _isMounted = false
         }

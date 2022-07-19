@@ -25,15 +25,22 @@ export default function Units() {
         setOperations(operationsData)
     }
 
+    const axiosData = async () => {
+        await Promise.all([axiosOperationsRequest(), axiosUnitsRequest()])
+    }
+
+    let _isMounted = true
+
 
     useEffect(() => {
-        const axiosData = async () => {
-            await Promise.all([axiosOperationsRequest(), axiosUnitsRequest()])
+
+        if(_isMounted) {
+            axiosData()
         }
-        axiosData()
+
 
         return () => {
-            console.log("unmouting....")
+            _isMounted = false
         }
 
     }, [setOperations, setUnits])
