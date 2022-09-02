@@ -1,10 +1,12 @@
 import React, {useContext} from "react";
-import {Link} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 
 import "../styles/Header.css";
 import AuthContext from "../context/AuthContext";
 
 const Header = () => {
+
+    let params = useParams()
 
     let {user, logoutUser} = useContext(AuthContext)
 
@@ -17,9 +19,14 @@ const Header = () => {
                             Home
                         </Link>
 
-                        <Link className={'link'} to={'/shiftinfo'}>
+                        <Link className={'link'} to={`/${params.id}`}>
+                            UnitsInfo
+                        </Link>
+
+                        <Link className={'link'} to={`/${params.id}/shiftInfo`}>
                             ShiftInfo
                         </Link>
+
 
                         <li className={'link'}>
                             <a onClick={logoutUser}>

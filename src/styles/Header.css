@@ -1,6 +1,5 @@
 .navbar {
     background-color: transparent;
-    position: fixed;
     display: inline;
     left: 0;
     right: 0;
@@ -9,8 +8,8 @@
 
 }
 
-.navbar ul link {
-    display: inline;
+.navbar ul {
+    display: flex;
     margin: 1rem;
 }
 

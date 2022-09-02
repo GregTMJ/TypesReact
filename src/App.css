@@ -2,20 +2,163 @@ html,
 body {
   height: 100%;
   width: 100%;
-  background: rgb(4, 10, 14);
-  background: linear-gradient(90deg, rgba(4, 10, 14, 1) 0%, rgba(21, 43, 60, 1) 25%, rgba(58, 102, 139, 1) 50%, rgba(67, 128, 177, 1) 75%, rgba(41, 80, 116, 1) 100%);
+  background: linear-gradient(
+          135deg,
+          #242e4d,
+          #897e79
+  );
   margin: 0;
 }
 
 
-.content-wrapper {
-  margin: 0 auto;
-  padding-top: 5rem;
+.wrapper {
   display: flex;
-  flex-direction: column;
   justify-content: center;
-  align-content: center;
-  height: 100%;
-  width: 100%;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 0rem;
+  margin: 0 auto;
+}
+
+/* Mobile, insert to some better place without !important */
+.navbar {
+  background-color: hsla(0, 0%, 22.7%, 0.8) !important;
+}
+
+
+@media (min-width: 1150px) {
+
+
+  .Datatable {
+    width: 100%;
+  }
+
+  h1 {
+    margin-bottom: 0 !important;
+  }
+
+  h1 {
+    margin-top: -10px;
+  }
+
+  .main-content:nth-child(1), .main-content:nth-child(2) {
+    margin-top: 1em;
+  }
+
+  .Datatable th {
+
+    max-width: 66px !important;
+    word-wrap: break-word !important;
+    font-size: 81% !important;
+  }
+
+  .main-content {
+    width: 47% !important;
+    margin-bottom: 2rem !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  .bg_image {
+    align-items: center !important;
+    align-items: stretch !important;
+  }
+
+
+  .Data {
+    justify-content: center !important;
+    justify-content: stretch !important;
+    height: 100% !important;
+    width: 100% !important;
+  }
+
+  .Datatable td {
+    white-space: nowrap !important;
+    font-size: 80% !important;
+  }
+
+  .Data > div:nth-child(2) {
+    width: 100% !important;
+  }
 
 }
+
+.content-wrapper {
+
+  padding-left: 0 !important;
+
+}
+
+
+@media (max-width: 1000px) {
+  .main-content {
+    max-width: 800px;
+  }
+
+}
+
+@media (max-width: 850px) {
+
+  .main-content {
+
+    width: 75%;
+    padding-left: 0;
+    padding-right: 0;
+    min-width: 600px;
+  }
+
+  .Data > div:nth-child(2) {
+    width: 100%;
+  }
+
+  .Datatable {
+
+    width: 100%;
+  }
+
+  html, body {
+    font-size: 11px !important;
+  }
+
+  .Datatable {
+    font-size: 14px !important;
+  }
+
+  .main-content {
+    font-size: 14px !important;
+  }
+
+  .Datatable th {
+
+    max-width: 100px !important;
+    word-wrap: break-word !important;
+  }
+
+}
+
+@media (max-width: 700px) {
+
+  .main-content {
+
+    width: initial;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    min-width: initial;
+  }
+
+  html, body {
+    font-size: 9px !important;
+  }
+
+  .Datatable {
+    font-size: 12px !important;
+  }
+
+  .main-content {
+    font-size: 12px !important;
+  }
+
+}
+
+
+
