@@ -8,14 +8,15 @@ import NoContent from "./components/NoContent";
 import ShiftInfo from "./components/ShiftInfo";
 import PrivateRoute from "./utils/PrivateRoute";
 import Units from "./components/Units";
-import Header from "./components/Header";
+
 
 
 import axios from "axios";
 
 // These axios defaults allows us to get the csrftoken of any django requests
-axios.defaults.xsrfHeaderName = 'X-CSRFTOKEN'
+axios.defaults.xsrfHeaderName = 'X-CSRFTOKEN';
 axios.defaults.xsrfCookieName = "csrftoken";
+
 
 
 function App() {

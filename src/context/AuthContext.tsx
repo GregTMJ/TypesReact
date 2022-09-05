@@ -3,6 +3,9 @@ import {useState, useEffect} from 'react';
 import jwt_decode from "jwt-decode";
 import {useNavigate} from "react-router-dom";
 
+import axios from "axios";
+import axiosInstance from "../utils/axiosAPI";
+
 interface Auth {
     user?: object,
     authTokens?: string | object,
@@ -28,7 +31,8 @@ export const AuthProvider = ({children}: any) => {
     let loginUser = async (e: any) => {
 
         e.preventDefault()
-        let response = await fetch('http://192.100.1.50:7000/api/token/', {
+
+        let response = await fetch('http://192.100.1.50:7000/api/token/obtain/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -41,6 +45,9 @@ export const AuthProvider = ({children}: any) => {
             setAuthTokens(data)
             setUser(jwt_decode(data.access))
             localStorage.setItem('authTokens', JSON.stringify(data))
+            localStorage.setItem('access_token', (`JWT ${data.access}`))
+            console.log(localStorage.getItem('access_token'))
+            localStorage.setItem('refresh_token', JSON.stringify(data.refresh))
             navigate('/')
         } else {
             alert('Вводные данные неверны! Попробуйте ещё раз!')
@@ -51,6 +58,7 @@ export const AuthProvider = ({children}: any) => {
         setAuthTokens(null)
         setUser(null)
         localStorage.removeItem('authTokens')
+        localStorage.removeItem('access_token')
         navigate('/login/')
     }
 

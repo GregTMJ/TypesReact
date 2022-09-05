@@ -18,18 +18,19 @@ const Login = () => {
 
     return (
         <div className={"loginForm"}>
-            <form onSubmit={loginUser} className={"form-style"}>
+            <form onSubmit={loginUser} className={"flex-row"}>
                 <label htmlFor={"Username"} className={'loginlabel'}>Username: </label>
                 <input className={"Username"} type={'text'} name={'username'}
                        placeholder={"Enter your username... "}/>
 
                 <label htmlFor={"Password"} className={'loginlabel'}>Password: </label>
                 <input className={"Password"} type={'password'} name={'password'}
-                       placeholder={'Enter your password...'}/>
+                       placeholder={'Enter your password...'} autoComplete="off"/>
                 <button type={"submit"} className={"form-submit"}>submit</button>
+
             </form>
         </div>
-    )
+)
 }
 
 export default Login;

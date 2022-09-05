@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, {useContext, useEffect} from "react";
 
 import TechOp from "./TechOp";
 import "../styles/Units.css";
@@ -7,6 +7,11 @@ import {useParams} from "react-router-dom";
 import axios from "axios";
 import NoContent from "./NoContent";
 import Header from "./Header";
+import AuthContext from "../context/AuthContext";
+
+
+
+axios.defaults.withCredentials = true;
 
 interface Infos {
     units: any[],
@@ -26,17 +31,6 @@ export default function Units() {
     }
 
     const PARAM = URL_API[`${params.id}`]
-    const BASE_URL = `http://192.100.1.50:7000/${PARAM}`
-
-    const getUnitsOperations = (URL: string) => {
-        const full_URL = `${URL}/units/`
-        return axios.get(full_URL)
-    }
-
-    const getFullOperations = (URL: string) => {
-        const full_URL = `${URL}/operations/`
-        return axios.get(full_URL)
-    }
 
     const [things, setThings] = React.useState<Infos>({
         units: [],
@@ -47,9 +41,14 @@ export default function Units() {
     const [operations, setOperations] = React.useState<any[]>([])
 
     const axiosUnitsRequest = async () => {
-        const unitsRequest = await getUnitsOperations(BASE_URL)
+        const unitsRequest = await axios.get(`http://192.100.1.50:7000/${PARAM}/units/`, {
+            headers: {
+                'Authorization': typeof(localStorage.getItem('access_token')) === "string" ? `${localStorage.getItem('access_token')}` : "JWT",
+                'Content-Type': 'Application/JSON',
+            }
+        })
         const unitsData = unitsRequest.data.data
-        setThings((prev )=> {
+        setThings((prev) => {
             return {
                 ...prev,
                 units: unitsData
@@ -58,15 +57,21 @@ export default function Units() {
     }
 
     const axiosOperationsRequest = async () => {
-        const operationsRequest = await getFullOperations(BASE_URL)
+        const operationsRequest = await axios.get(`http://192.100.1.50:7000/${PARAM}/operations/`, {
+            headers: {
+                'Authorization': `${localStorage.getItem('access_token')}`,
+                'Content-Type': 'Application/JSON',
+            }
+        })
         const operationsData = operationsRequest.data.data
         setOperations(operationsData)
     }
 
     const axiosData = async () => {
         if (PARAM) {
+
             await Promise.all([axiosOperationsRequest(), axiosUnitsRequest()])
-            return setThings((prev)=> {
+            return setThings((prev) => {
                 return {
                     ...prev,
                     loaded: true
@@ -74,7 +79,7 @@ export default function Units() {
             })
 
         }
-        return setThings((prev)=> {
+        return setThings((prev) => {
             return {
                 ...prev,
                 request: false

@@ -1,5 +1,8 @@
 import React, {useEffect, useState} from "react";
 import techResultTable from "../tableFormatOperations/techResultTable";
+import axios from "axios";
+
+axios.defaults.withCredentials = true;
 
 
 interface enumUnitInfo {
@@ -17,6 +20,8 @@ interface enumUnitInfo {
 }
 
 export default function TechOp({unitInfo, operationsInfo}: enumUnitInfo) {
+
+
 
     const [loaded, setLoaded] = useState<boolean>(false)
     let _isMounted = true

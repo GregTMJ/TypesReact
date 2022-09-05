@@ -1,9 +1,12 @@
-import React from 'react';
+import React, {useContext, useEffect} from 'react';
 import {Link} from 'react-router-dom';
+
+import AuthContext from "../context/AuthContext";
 
 import '../styles/HomePage.css';
 
 const HomePage = () => {
+
     return (
         <div className='Main-Content'>
             <section className="main">
