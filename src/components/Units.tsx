@@ -1,14 +1,15 @@
-import React, {useContext, useEffect} from "react";
+import React, {useEffect} from "react";
 
 import TechOp from "./TechOp";
-import "../styles/Units.css";
+import NoContent from "./NoContent";
+import Header from "./Header";
 
 import {useParams} from "react-router-dom";
 import axios from "axios";
-import NoContent from "./NoContent";
-import Header from "./Header";
-import AuthContext from "../context/AuthContext";
 
+import "../styles/Units.css";
+
+import axiosInstance from "../utils/axiosAPI";
 
 
 axios.defaults.withCredentials = true;
@@ -41,30 +42,41 @@ export default function Units() {
     const [operations, setOperations] = React.useState<any[]>([])
 
     const axiosUnitsRequest = async () => {
-        const unitsRequest = await axios.get(`http://192.100.1.50:7000/${PARAM}/units/`, {
-            headers: {
-                'Authorization': typeof(localStorage.getItem('access_token')) === "string" ? `${localStorage.getItem('access_token')}` : "JWT",
-                'Content-Type': 'Application/JSON',
-            }
-        })
+        const unitsRequest = await axiosInstance.get(`/${PARAM}/units/`)
         const unitsData = unitsRequest.data.data
-        setThings((prev) => {
-            return {
-                ...prev,
-                units: unitsData
-            }
-        })
+
+        if (unitsRequest.status >= 400) {
+            setThings((prev) => {
+                return {
+                    ...prev,
+                    loaded: false
+                }
+            })
+        } else {
+            setThings((prev) => {
+                return {
+                    ...prev,
+                    units: unitsData
+                }
+            })
+        }
+
     }
 
     const axiosOperationsRequest = async () => {
-        const operationsRequest = await axios.get(`http://192.100.1.50:7000/${PARAM}/operations/`, {
-            headers: {
-                'Authorization': `${localStorage.getItem('access_token')}`,
-                'Content-Type': 'Application/JSON',
-            }
-        })
+        const operationsRequest = await axiosInstance.get(`/${PARAM}/operations/`)
         const operationsData = operationsRequest.data.data
-        setOperations(operationsData)
+        if (operationsRequest.status >= 400) {
+            return setThings((prev) => {
+                return {
+                    ...prev,
+                    loaded: false
+                }
+            })
+        } else {
+            setOperations(operationsData)
+        }
+
     }
 
     const axiosData = async () => {

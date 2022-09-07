@@ -46,8 +46,7 @@ export const AuthProvider = ({children}: any) => {
             setUser(jwt_decode(data.access))
             localStorage.setItem('authTokens', JSON.stringify(data))
             localStorage.setItem('access_token', (`JWT ${data.access}`))
-            console.log(localStorage.getItem('access_token'))
-            localStorage.setItem('refresh_token', JSON.stringify(data.refresh))
+            localStorage.setItem('refresh_token', (`JWT ${data.refresh}`))
             navigate('/')
         } else {
             alert('Вводные данные неверны! Попробуйте ещё раз!')
