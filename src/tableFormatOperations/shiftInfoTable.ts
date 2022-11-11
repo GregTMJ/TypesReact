@@ -14,8 +14,16 @@ export default function shiftInfoTable(selectedDate: string | null, selectedShif
         let k = "";
         table.innerHTML = k;
 
-        const percentage = Math.round((1 - (receivedData.exit_tubes / receivedData.enter_tubes)) * 1000) / 10
-        const percentage2 = Math.round((1 - (receivedData.exit_line2 / receivedData.enter_line2)) * 1000) / 10
+        let percentage = Math.round((1 - (receivedData.exit_tubes / receivedData.enter_tubes)) * 1000) / 10
+        let percentage2 = Math.round((1 - (receivedData.exit_line2 / receivedData.enter_line2)) * 1000) / 10
+
+        if (isNaN(percentage)) {
+            percentage = 0
+        }
+
+        if (isNaN(percentage2)) {
+            percentage2 = 0
+        }
 
         k += "<tr>";
         k += "<td>" + selectedDate + "</td>";

@@ -1,5 +1,6 @@
 import factoryTimeZone from "../utils/factoryTimeZone";
 import msToTimeString from "../utils/msToTimeString";
+import {type} from "os";
 
 export default function techResultTable(ResponseData: any[], machineName: string, unit_ref: number, productivity: number): void {
 
@@ -107,7 +108,6 @@ export default function techResultTable(ResponseData: any[], machineName: string
             row += '<td>' + bad_tubes + '</td>';
             row += '<td>' + productivity + '</td>';
             row += '<td>' + msToTimeString(timeDifference) + '</td>';
-
 
             machineRow.innerHTML += row;
         } catch (e) {

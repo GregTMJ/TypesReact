@@ -14,7 +14,7 @@ interface enumUnitInfo {
         unit_ref: number,
         is_productive: number,
         total_treated_tubes: number,
-        unitref: number
+        unitref: number,
     },
     operationsInfo: any[],
 }

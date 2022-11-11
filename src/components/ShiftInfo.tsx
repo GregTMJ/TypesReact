@@ -1,4 +1,6 @@
 import React, {useEffect, useState} from "react";
+import {useParams} from "react-router-dom";
+
 import DatePicker from "react-datepicker";
 
 import ExportCSV from "./ExportCSV";
@@ -7,10 +9,13 @@ import "../styles/ShiftInfo.css"
 import "react-datepicker/dist/react-datepicker.css"
 
 import shiftInfoTable from "../tableFormatOperations/shiftInfoTable";
-import {useParams} from "react-router-dom";
 import axios from "axios";
 import Header from "./Header";
 import NoContent from "./NoContent";
+
+import axiosInstance from "../utils/axiosAPI";
+
+axios.defaults.withCredentials = true;
 
 
 const ShiftInfo = () => {
@@ -18,17 +23,16 @@ const ShiftInfo = () => {
     const params: any = useParams()
 
     const URL_API: any = {
-        vi: 'api',
+        vi: 'rp5api',
         np: 'api2',
         nts320: 'api3'
     }
 
     const PARAM = URL_API[`${params.id}`]
-    const BASE_URL = `http://192.100.1.50:7000/${PARAM}`
 
-    const getShiftInfo = (URL: string, pk: string) => {
-        const full_URL = `${URL}/shift/${pk}`
-        return axios.get(full_URL)
+
+    const getShiftInfo = (pk: number, selected_date: string) => {
+        return axiosInstance.get(`/${PARAM}/shift/${pk}?date=${selected_date}`)
     }
 
 
@@ -41,8 +45,8 @@ const ShiftInfo = () => {
     ]
 
 
-    const getShiftRequestResult = async (URLSent: string, selectedDate: string, selectedShift: number) => {
-        const response = await getShiftInfo(BASE_URL, URLSent)
+    const getShiftRequestResult = async (selectedDate: string, selectedShift: number) => {
+        const response = await getShiftInfo(selectedShift, selectedDate)
         if (response.status > 400) {
             alert("на данный запрос нет данных!")
         } else {
@@ -67,9 +71,8 @@ const ShiftInfo = () => {
         const getSelectedMonth = ("0" + (chosenDate.getMonth() + 1)).slice(-2)
         const getSelectedYear = chosenDate.getFullYear()
         const getSelectedDate = `${getSelectedYear}-${getSelectedMonth}-${getSelectedDay}`
-        const sentURL = `${chosenShift}_${getSelectedDate}`
 
-        await getShiftRequestResult(sentURL, getSelectedDate, chosenShift)
+        await getShiftRequestResult(getSelectedDate, chosenShift)
 
 
     }

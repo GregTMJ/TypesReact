@@ -26,7 +26,7 @@ export default function Units() {
     const params: any = useParams()
 
     const URL_API: any = {
-        vi: 'api',
+        vi: 'rp5api',
         np: 'api2',
         nts320: 'api3'
     }
@@ -42,39 +42,46 @@ export default function Units() {
     const [operations, setOperations] = React.useState<any[]>([])
 
     const axiosUnitsRequest = async () => {
-        const unitsRequest = await axiosInstance.get(`/${PARAM}/units/`)
-        const unitsData = unitsRequest.data.data
+        try {
+            const unitsRequest = await axiosInstance.get(`/${PARAM}/units/`)
+            const unitsData = unitsRequest.data.data
 
-        if (unitsRequest.status >= 400) {
-            setThings((prev) => {
-                return {
-                    ...prev,
-                    loaded: false
-                }
-            })
-        } else {
-            setThings((prev) => {
-                return {
-                    ...prev,
-                    units: unitsData
-                }
-            })
+            if (unitsRequest.status >= 400) {
+                setThings((prev) => {
+                    return {
+                        ...prev,
+                        loaded: false
+                    }
+                })
+            } else {
+                setThings((prev) => {
+                    return {
+                        ...prev,
+                        units: unitsData
+                    }
+                })
+            }
+        } catch (e) {
+            console.log(`some problems with axiosUnitsRequest`)
         }
-
     }
 
     const axiosOperationsRequest = async () => {
-        const operationsRequest = await axiosInstance.get(`/${PARAM}/operations/`)
-        const operationsData = operationsRequest.data.data
-        if (operationsRequest.status >= 400) {
-            return setThings((prev) => {
-                return {
-                    ...prev,
-                    loaded: false
-                }
-            })
-        } else {
-            setOperations(operationsData)
+        try {
+            const operationsRequest = await axiosInstance.get(`/${PARAM}/operations/`)
+            const operationsData = operationsRequest.data.data
+            if (operationsRequest.status >= 400) {
+                return setThings((prev) => {
+                    return {
+                        ...prev,
+                        loaded: false
+                    }
+                })
+            } else {
+                setOperations(operationsData)
+            }
+        } catch (e) {
+            console.log('some problems with axiosOperationsRequest')
         }
 
     }
@@ -151,7 +158,7 @@ export default function Units() {
                     <tbody className={"Datatable"}>
                     {things.units.map(unit => {
 
-                        const keyName = unit.unit_name + unit.is_productive
+                        const keyName = unit.unit_name + unit.is_productive + unit.total_treated_tubes
                         return (
                             <TechOp key={keyName}
                                     unitInfo={unit} operationsInfo={operations}/>
